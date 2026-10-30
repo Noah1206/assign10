@@ -150,13 +150,28 @@ DB_USERNAME
 Render 배포 과정
 github에 개인 레포를 한개 생성한다. 그후 레포주소와 연결한후에 푸시하고, render와 개인 레포를 연결하고, 환경변수를 render에 저장한다. 그리고 재배포를 하면 배포가 된다.
 배포 URL의 CRUD 테스트 결과
-
+![스크린샷 2026-10-30 오후 11.38.52.png](../../../../Desktop/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-10-30%20%EC%98%A4%ED%9B%84%2011.38.52.png)
 MariaDB 데이터 저장 확인
+![스크린샷 2026-10-30 오후 11.40.04.png](../../../../Desktop/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-10-30%20%EC%98%A4%ED%9B%84%2011.40.04.png)
 발생한 문제와 해결 방법
+create method로 response로 가지고올때는 id가 숫자로 잘 나왔는데, findAll로 데이터를 나타낼때는 id가 전부 null로 되어있어서 뭐가 문제인지 봤더니 response 데이터로 변환하는 함수 안에 id 부분을 null로 고정시킨 것이 문제여서, request.id()로 수정한뒤, 깃헙에 푸시하고 재배포 진행했다. 
 ⑥ Weekly Report
 
 Key Learning: 새롭게 이해한 내용 3가지
+JPA를 사용하면, SQL문을 굳이 복잡하게 적지 않아도 간단하게 데이터를 처리 할 수 있다.
+DB를 실제로 연결할때는 db url를 사용해서 환경변수로 연결해야한다. 
+@Entity 를 사용해서, 데이터베이스의 사용할 테이블을 어노테이션을 추가함으로서 만들 수 있다. 
 Problem & Solution: 문제 1개 이상과 해결 과정
+intellij를 실행하는데 계속해서 처음부터 오류가 나서 찾아보니까, ProductController가 ProductService 빈을 찾지 못했어서 나타나는 오류라고 확인했고, @Service 어노테이션을 서비스 클래스 바로위쪽에 추가했습니다. 
 Code Review: 중요한 코드 1개와 동작 설명
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+이거고, 데이터를 추가할때 식별하는 id를 계속 같은 id가 아니라 계속 값이 +1이 추가되게 하는 코드이다. 이 코드로 인해 테이블 안에 있는 데이터들을 구별가능하게된다.
 AI Usage: AI 활용 내용 및 직접 수정·검증한 부분, 자신이 생각하는 AI사용률(%)
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MovieRepository extends JpaRepository<Movie, Long> {
+}
+
+이 부분을 ai를 활용해서, 계속 interface가 아니라 class로 사용해서 나타나는 문제를 해결했었습니다. 5% 정도입니다.
 Reflection: 추가로 공부하고 싶은 내용
+crud 프로그램 뿐만 아니라 백엔드 사용자 메세지를 주고받는 것도 해보고싶습니다.
