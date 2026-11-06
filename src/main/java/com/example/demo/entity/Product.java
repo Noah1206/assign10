@@ -3,9 +3,16 @@ package com.example.demo.entity;
 import com.example.demo.dto.ProductRequest;
 import com.example.demo.dto.ProductResponse;
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 @Entity // 엔티티 클래스와 데이터베이스 테이블은 @Entity를 통해 JpaRepositoy를 extends로 repository에 연결해서, jpa를 사용한다. DB와 맵핑할 객체인지를 확인후 데이터베이스 테이블과 Entity 데이터 필드들과 맵핑한다.
 // @Entity는 객체와 데이터베이스를 맵핑하는 객체를 나타내는 어노테이션
+@EntityListeners(AuditingEntityListener.class)
 @Table(name="product")
 public class Product {
     @Id // @Id는 엔티티를 식별하는 기준
@@ -26,6 +33,12 @@ public class Product {
 
     @Column(nullable = false)
     private Integer price;
+
+    @CreatedDate
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    private LocalDateTime updateAt;
 
     protected Product() { } // JPA uses the no-args constructor.
 
@@ -53,4 +66,6 @@ public class Product {
     public String getCategory() { return category; }
     public Integer getDate() { return date; }
     public Integer getPrice() { return price; }
+    public LocalDateTime getCreatedAt() {return createdAt;}
+    public LocalDateTime getUpdateAt() {return updateAt; }
 }
