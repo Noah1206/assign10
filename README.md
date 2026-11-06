@@ -5,7 +5,7 @@ Q1. @Entity, @Id, @GeneratedValue는 각각 어떤 역할을 하는가?
 @Id는 엔티티를 식별하는 기준
 @GeneratedValue는 해당 엔티티를 생성했을때, PK값을 자동으로 추가하는 어노테이션
 Q2. Entity 클래스와 데이터베이스 테이블은 어떻게 연결되는가?
-엔티티 클래스와 데이터베이스 테이블은 @Entity를 통해 JPA가 연결된 DB와 맵핑할 객체인지를 확인후 데이터베이스 테이블과 Entity 데이터 필드들과 맵핑한다.
+엔티티 클래스와 데이터베이스 테이블은 @Entity를 통해 JpaRepositoy를 extends로 repository에 연결해서, jpa를 사용한다. DB와 맵핑할 객체인지를 확인후 데이터베이스 테이블과 Entity 데이터 필드들과 맵핑한다.
 ② Repository
 
 Q3. JpaRepository<Entity, Long>에서 두 타입은 각각 무엇을 의미하는가?
