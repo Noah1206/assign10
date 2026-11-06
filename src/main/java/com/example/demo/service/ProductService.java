@@ -68,6 +68,7 @@ public class ProductService {
     }
 
     private ProductResponse toResponse(Product request) {
-        return new ProductResponse(request.getId(), request.getName(), request.getDescription(), request.getCategory(), request.getDate(), request.getPrice());
+        return new ProductResponse(request.getId(), request.getName(), request.getDescription(), request.getCategory(), request.getPrice(),      request.getCreatedAt(),
+                request.getUpdateAt());
     }
 }

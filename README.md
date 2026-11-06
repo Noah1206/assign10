@@ -32,3 +32,36 @@ Q8. @Transactional과 Dirty Checking은 어떤 관계가 있는가?
 기존 코드가 정상적으로 실행되도록 유지합니다.
 관련 코드가 없다면 README에 그 이유를 작성합니다.
 Q8은 STEP 4를 구현한 후 작성해도 됩니다.
+
+
+① 프로젝트 소개
+
+프로젝트 주제 및 주요 기능
+: 상품 관리 CRUD 프로젝트
+상품을 추가하고, 수정하고, 검색하고, 삭제하는 기본적인 CRUD의 기능을가지고있는 프로젝트입니다.
+
+GitHub Repository URL : https://github.com/2026-2-WebService/assign10-c01-22500698.git
+Render Deployment URL : 
+② 주요 구현 내용 및 결과
+
+Query Method 3개: 검색 조건 및 API 실행 결과
+Dirty Checking: 수정 기능 구현 및 실행 결과
+Auditing: 생성·수정 시간 자동 기록 결과
+※ 소스 코드에 작성한 설명이나 주석을 README에 중복 작성할 필요는 없습니다. 주요 기능의 실행 결과를 중심으로 정리하세요.
+
+③ Weekly Review
+
+Key Learning: 새롭게 배운 내용 2~3가지
+Problem & Solution: 어려웠던 점과 해결 방법
+Reflection: 이번 과제를 통해 느낀 점
+④ AI Usage
+
+사용한 생성형 AI 도구 및 주요 질문
+AI가 제공한 내용 중 직접 수정하거나 검증한 부분
+AI 사용 비율에 대한 자기 평가
+README 및 AI 사용 유의사항
+
+README와 코드 설명 주석은 자신의 이해를 바탕으로 직접 작성해야 합니다.
+생성형 AI는 개념 학습과 오류 해결에 활용할 수 있으나, 작성한 코드를 직접 설명할 수 있어야 합니다.
+AI 사용률이 50% 이상인 경우 기존 평가 기준에 따라 감점될 수 있습니다.
+필요시 TA가 코드 이해도를 확인하며, AI 탐지 결과만으로 감점을 확정하지 않습니다.
