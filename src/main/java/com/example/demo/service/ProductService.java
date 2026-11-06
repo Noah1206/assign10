@@ -4,6 +4,7 @@ import com.example.demo.dto.ProductRequest;
 import com.example.demo.dto.ProductResponse;
 import com.example.demo.entity.Product;
 import com.example.demo.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import jakarta.websocket.server.ServerEndpoint;
 import org.apache.coyote.Request;
 import org.apache.coyote.Response;
@@ -36,8 +37,11 @@ public class ProductService {
         return toResponse(checkProduct(id));
     }
 
+    @Transactional
     public void update(Long id, ProductRequest request) {
-        checkProduct(id).update(request);
+        Product updateProduct = productRepository.findById(id).orElseThrow();
+        updateProduct.update(request);
+
     }
 
     public void delete(Long id) {
