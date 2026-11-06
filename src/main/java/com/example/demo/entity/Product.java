@@ -4,11 +4,11 @@ import com.example.demo.dto.ProductRequest;
 import com.example.demo.dto.ProductResponse;
 import jakarta.persistence.*;
 
-@Entity
+@Entity // @Entity는 객체와 데이터베이스를 맵핑하는 객체를 나타내는 어노테이션
 @Table(name="product")
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // @Id는 엔티티를 식별하는 기준
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // @GeneratedValue는 해당 엔티티를 생성했을때, PK값을 자동으로 추가하는 어노테이션
     private Long id;
 
     @Column(nullable = false, length = 200)
