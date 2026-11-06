@@ -46,4 +46,19 @@ public class ProductController {
         productService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping(params = "name")
+    public List<Product> getProducts(@RequestParam String name) {
+        return productService.getProduct(name);
+    }
+
+    @GetMapping(params = "price")
+    public List<Product> getProductPriceGreaterThan(@RequestParam Integer price) {
+        return productService.getPriceGreaterThan(price);
+    }
+
+    @GetMapping(params = "orderAsc")
+    public List<Product> getAllOrderAsc() {
+        return productService.getPriceAsc();
+    }
 }

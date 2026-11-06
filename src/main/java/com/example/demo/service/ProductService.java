@@ -51,6 +51,18 @@ public class ProductService {
         return productRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product is not found " + id)); // findById() : id에 해당하는 객체를 db에서 찾는다.
     }
 
+    public List<Product> getProduct(String name) {
+        return productRepository.findByName(name);
+    }
+
+    public List<Product> getPriceGreaterThan(Integer price) {
+        return productRepository.findByPriceGreaterThan(price);
+    }
+
+    public List<Product> getPriceAsc() {
+        return productRepository.findAllByOrderByPriceAsc();
+    }
+
     private ProductResponse toResponse(Product request) {
         return new ProductResponse(request.getId(), request.getName(), request.getDescription(), request.getCategory(), request.getDate(), request.getPrice());
     }
