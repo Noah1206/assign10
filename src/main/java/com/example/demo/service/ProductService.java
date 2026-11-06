@@ -22,12 +22,14 @@ public class ProductService {
     }
 
     public ProductResponse create(ProductRequest request) {
-        Product saved = productRepository.save(new Product(request)); // INSERT
+        Product saved = productRepository.save(new Product(request)); // INSERT // save() : 받아온 객체를 db에 저장한다.
+
         return ProductResponse.from(saved);
     }
 
     public List<ProductResponse> findAll() {
-        return productRepository.findAll().stream().map(this::toResponse).toList();
+        return productRepository.findAll().stream().map(this::toResponse).toList(); // findAll() : 해당 테이블에 있는 모든 데이터들을 db에서 가지고온다
+
     }
 
     public ProductResponse findById(Long id) {
@@ -39,14 +41,14 @@ public class ProductService {
     }
 
     public void delete(Long id) {
-        if (!productRepository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found: " + id);
+        if (!productRepository.existsById(id)) { // existsById() : 해당 데이터가 실제로 존재하는지 안하는지 확인한다.
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found: " + id); // deleteById() : id에 해당하는 객체를 db에서 삭제한다
         }
         productRepository.deleteById(id);
     }
 
-    private Product checkProduct(Long id) {
-        return productRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product is not found " + id));
+    private Product checkProduct(Long id) { // 만약 id에 해당하는 데이터가 존재하지않는 null일 수도 있기 때문에, 만약 null일때 중단되지않고 null인 상태인 것을 클라이언트에게 알려줘야하기 때문에 Optional을 사용한다.
+        return productRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product is not found " + id)); // findById() : id에 해당하는 객체를 db에서 찾는다.
     }
 
     private ProductResponse toResponse(Product request) {
