@@ -23,7 +23,7 @@ public class ProductService {
 
     public ProductResponse create(ProductRequest request) {
         Product saved = productRepository.save(new Product(request)); // INSERT // save() : 받아온 객체를 db에 저장한다.
-
+        // save()를 호출하면, 먼저 객체가 entity로서 추가되고, jpa가 db에 추가된 객체를 db에 맵핑하여 추가한다. 또한 기존 데이터 수정은 Jpa가 관리하는 persistence context에 들어가있기 때문에, entity 객체를 불러와서 수정해도 dirty checking으로 update가 반영된다.
         return ProductResponse.from(saved);
     }
 
