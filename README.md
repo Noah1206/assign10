@@ -18,10 +18,10 @@ findAll() : 해당 테이블에 있는 모든 데이터들을 db에서 가지고
 existsById() : 해당 데이터가 실제로 존재하는지 안하는지 확인한다.
 Q5. findById()의 반환 타입이 Optional인 이유는 무엇인가?
 만약 id에 해당하는 데이터가 존재하지않는 null일 수도 있기 때문에, 만약 null일때 중단되지않고 null인 상태인 것을 클라이언트에게 알려줘야하기 때문에 Optional을 사용한다. 
+다만 나는 orElseThrow함수를 사용해서, null일때 예외처리로서 http 상태코드를 따로 바로 반환가능하게 설정해서, 중단되지 않게 했기 때문에 findById에 객체가 존재할때는 toResponse함수로 response 형식에 맞춰서 반환되게 해서 findById의 반환타입이 Optional이 아닙니다. 
 Q6. JpaRepository에서 기본 제공하는 메서드와 개발자가 직접 작성하는 Query Method의 차이는 무엇인가?
 JpaRepository에서 기본 제공하는 메서드는 실제로 직접 작성하는 Query Method와 다르게, jpa가 메서드의 기능에 맞게 직접 sql 문을 작성해서 db에 반영까지 하지만, 개발자가 작성하는 쿼리 메서드는 직접 Query Method를 적는것 뿐만 아니라, 개발자가 sql문까지 직접 작성해서 DB에 변경사항을 반영해야합니다.
 ③ Service
-
 Q7. save()를 호출하면 새로운 데이터 등록과 기존 데이터 수정이 어떻게 처리되는가?
 save()를 호출하면, 먼저 객체가 entity로서 추가되고, jpa가 db에 추가된 객체를 db에 맵핑하여 추가한다. 또한 기존 데이터 수정은 Jpa가 관리하는 persistence context에 들어가있기 때문에, entity 객체를 불러와서 수정해도 dirty checking으로 update가 반영된다.
 Q8. @Transactional과 Dirty Checking은 어떤 관계가 있는가?
